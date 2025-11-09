@@ -1,4 +1,4 @@
-def naughtyOrNice(strings):
+def naughtyOrNice1(strings):
     nice = 0
 
     for i in strings:
@@ -18,13 +18,33 @@ def naughtyOrNice(strings):
 
     return nice
 
+def naughtyOrNice2(strings):
+    nice = 0
+
+    for i in strings:
+        status = True
+
+        if not any([i[j]+i[j+1] == i[j+2]+i[j+3] for j in range(len(i) - 3)]):
+            status = False
+
+        if not any([i[j] == i[j+2] for j in range(len(i) - 2)]):
+            status = False
+
+        if status:
+            nice += 1
+
+    return nice
+
 strings = '''ugknbfddgicrmopn
-aaa
+aaaa
 jchzalrnumimnmhp
 haegwjzuvuyypxyu
 dvszwmarrgswjxmb
 qwrtyp
-abcda'''
+abcda
+xyxy
+efe
+zfzfz'''
 strings = strings.split('\n')
 
-print(naughtyOrNice(strings))
+print(f"Part 1: {naughtyOrNice1(strings)} \nPart 2: {naughtyOrNice2(strings)}")
