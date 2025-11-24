@@ -24,8 +24,11 @@ def naughtyOrNice2(strings):
     for i in strings:
         status = True
 
-        if not any([i[j]+i[j+1] == i[j+2]+i[j+3] for j in range(len(i) - 3)]):
-            status = False
+        temp = False
+        for j in range(len(i)-2):
+            if any([i[k]+i[k+1] == i[j:j+2] for k in range(j+2,len(i)-1)]):
+                temp = True
+        status = temp
 
         if not any([i[j] == i[j+2] for j in range(len(i) - 2)]):
             status = False
